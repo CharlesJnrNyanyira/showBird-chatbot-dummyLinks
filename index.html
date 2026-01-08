@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShowBird Chat Dummy Links</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: #f4f4f4;
+    }
+
+    /* 🔐 Login screen */
+    #login {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      background: #fff;
+      padding: 24px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 320px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .login-box h1 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .login-box p {
+      font-size: 14px;
+      margin-bottom: 16px;
+      color: #555;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #111;
+      color: #fff;
+    }
+
+    .error {
+      margin-top: 10px;
+      font-size: 14px;
+      color: red;
+      display: none;
+    }
+
+    /* 🤖 Chat container */
+    #chat {
+      display: none;
+      height: 100vh;
+    }
+
+    elevenlabs-convai {
+      width: 100%;
+      height: 100vh;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🔐 LOGIN -->
+  <div id="login">
+    <div class="login-box">
+      <h1>ShowBird AI Test – Agent 1</h1>
+      <p>Voer het wachtwoord in om verder te gaan</p>
+      <input type="password" id="password" placeholder="Wachtwoord" />
+      <button onclick="checkPassword()">Doorgaan</button>
+      <div class="error" id="error">Onjuist wachtwoord</div>
+    </div>
+  </div>
+
+  <!-- 🤖 CHAT -->
+  <div id="chat">
+    <elevenlabs-convai
+      agent-id="agent_4101keezz8p0et0s4bshqte9q7sr"
+      server-location="eu-residency">
+    </elevenlabs-convai>
+
+    <script
+      src="https://unpkg.com/@elevenlabs/convai-widget-embed@beta"
+      type="text/javascript">
+    </script>
+  </div>
+
+  <script>
+    const PASSWORD = "showbird-agent"; // 
+
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      const error = document.getElementById("error");
+
+      if (input === PASSWORD) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("chat").style.display = "block";
+      } else {
+        error.style.display = "block";
+      }
+    }
+
+    // Allow Enter key
+    document.getElementById("password").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        checkPassword();
+      }
+    });
+  </script>
+
+</body>
+</html>
